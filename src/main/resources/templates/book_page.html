@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-$END$
+<div th:insert="~{parts/Navigation::navigation}"></div>
+<h1>Welcome to the Book page <span th:text="${USER_LOGIN}"></span></h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th></th>
+    </tr>
+    <th:block th:each="book : ${userBooks}">
+        <tr>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.year}"></td>
+            <td><button><a th:href="@{|/books/edit/${book.title}|}">Edit</a></button></td>
+            <td><button><a th:href="@{|/books/delete/${book.title}|}">Delete</a></button></td>
+        </tr>
+    </th:block>
+</table>
+<a href="/books/create">Add new book</a>
+<div th:insert="~{parts/footer::footer}"></div>
 </body>
 </html>

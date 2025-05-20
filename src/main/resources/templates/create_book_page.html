@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<form method="post" th:action="@{/books/createBook}" th:object="${newBook}">
+    <input type="text" th:field="*{title}" placeholder="Title" />
+    <input type="number" th:field="*{year}" placeholder="Year" />
+    <input type="submit" value="Save">
+</form>
 </body>
 </html>
